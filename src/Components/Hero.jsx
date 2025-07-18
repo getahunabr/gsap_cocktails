@@ -3,6 +3,7 @@ import React, { useRef } from "react";
 import { SplitText } from "gsap/all";
 import gsap from "gsap";
 import { useMediaQuery } from "react-responsive";
+
 const Hero = () => {
   const videoRef = useRef();
   const isMobile = useMediaQuery({ maxWidth: 767 });
@@ -10,17 +11,17 @@ const Hero = () => {
     const heroSplit = new SplitText(".title", { type: "chars, words" });
     const paragraphSplit = new SplitText(".subtitle", { type: "lines" });
 
-    heroSplit.chars.forEach((chars) => chars.classList.add("text-gradient"));
+    heroSplit.chars.forEach((char) => char.classList.add("text-gradient"));
 
     gsap.from(heroSplit.chars, {
-      yPercent: "100%",
+      yPercent: 100,
       duration: 1.8,
       ease: "expo.out",
       stagger: 0.06,
     });
     gsap.from(paragraphSplit.lines, {
       opacity: 0,
-      yPercent: "100%",
+      yPercent: 100,
       duration: 1.8,
       ease: "expo.out",
       stagger: 0.06,
@@ -59,7 +60,9 @@ const Hero = () => {
   return (
     <>
       <section id="hero" className="noisy">
-        <h1 className="title">MOJITO</h1>
+        <h1 title className="title">
+          MOJITO
+        </h1>
         <img
           src="/images/hero-left-leaf.png"
           alt="left-leaf"
