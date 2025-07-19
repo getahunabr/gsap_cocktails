@@ -5,25 +5,32 @@ import { SplitText } from "gsap/all";
 import { gsap } from "gsap";
 const Contact = () => {
   useGSAP(() => {
+    // Split the heading text into individual words for animation
     const titleSplit = SplitText.create("#contact h2", { type: "words" });
+    // Create a timeline with scroll-triggered animations
     const timeline = gsap.timeline({
       scrollTrigger: {
+        // Trigger animation when the footer enters the viewport
         trigger: "#contact",
+        // Start animation when the top of the section hits the center of the screen
         start: "top center",
       },
       ease: "power1.out",
     });
+    // Animate each word of the heading (fade in and slide up)
     timeline
       .from(titleSplit.words, {
         opacity: 0,
         yPercent: 100,
         stagger: 0.02,
       })
+      // Animate all subheadings and paragraphs below the main heading
       .from("#contact h3, #contact p", {
         opacity: 0,
         yPercent: 100,
         stagger: 0.02,
       })
+      // Animate decorative leaves by moving them up
       .to("#f-right-leaf", { y: -50, duration: 1, ease: "power1.out" })
       .to("#f-left-leaf", { y: -50, duration: 1, ease: "power1.out" }, "<");
   }, []);
